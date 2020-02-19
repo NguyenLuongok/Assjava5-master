@@ -12,6 +12,7 @@ public class HomeController {
     @GetMapping("view-home")
     public ModelAndView viewHome(){
         ModelAndView modelAndView = new ModelAndView("/pages/home");
+        System.out.println("hrllo");
         return modelAndView;
     }
 
