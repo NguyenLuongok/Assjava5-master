@@ -58,7 +58,7 @@
 		<p></p>
 		<nav class="navbar navbar-expand-sm bg-dark navbar-dark">
 			  <ul class="navbar-nav">
-				  <a class="nav-link" href="index.html" style="margin-left: 200px;">Trang chủ</a>
+				  <a class="nav-link" href="index_product.html" style="margin-left: 200px;">Trang chủ</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="staff.html">Phòng ban</a>
@@ -87,6 +87,10 @@
   <p>Sửa người dùng</p>
 	<form action="#" th:action="@{/pages/update-user/}+${id}" th:object="${user}" method="post">
 		<div class="form-group">
+			<label>ID</label>
+			<input type="text" class="form-control" th:field="*{id}"  placeholder="Nhập tên tài khoản"/>
+		</div>
+		<div class="form-group">
 			<label>Tên tài khoản:</label>
 			<input type="text" class="form-control" th:field="*{taiKhoan}"  placeholder="Nhập tên tài khoản"/>
 		</div>
@@ -104,8 +108,8 @@
 
 		<!--Call to action-->
 		<div class="pt-4">
-		  <a class="btn btn-outline-white" href="index.html" target="_blank"
-			role="button">Sinh viên kỳ 5
+		  <a class="btn btn-outline-white" href="index_product.html" target="_blank"
+			 role="button">Sinh viên kỳ 5
 			<i class="fas fa-download ml-2"></i>
 		  </a>
 		</div>

@@ -16,7 +16,7 @@ public class ProductServiceImpl implements ProductsService {
     }
 
     @Override
-    public Products finById(Long id) {
+    public Products findById(Long id) {
         return productsRepository.findById(id);
     }
 
@@ -27,9 +27,22 @@ public class ProductServiceImpl implements ProductsService {
     }
 
     @Override
+    public void refresh(Products products) {
+        productsRepository.refresh(products);
+    }
+
+    @Override
     public void remove(Long id) {
         productsRepository.remove(id);
     }
 
+    @Override
+    public Products findByName(String name) {
+        return productsRepository.findByName(name);
+    }
+    @Override
+    public void update(Long id,Products products) {
+        productsRepository.update(id,products);
+    }
 
 }

@@ -28,12 +28,18 @@ public class BillRepositoryImpl implements BillRepository {
 
     @Override
     public void save(Bill model) {
-
+        if (model.getId() != null) {
+            //update
+            entityManager.merge(model);
+        }else {
+            //add new
+            entityManager.persist(model);
+        }
     }
 
     @Override
     public void remove(Long id) {
-
+        entityManager.remove(entityManager.find(Bill.class,id));
     }
 
     @Override
@@ -41,5 +47,11 @@ public class BillRepositoryImpl implements BillRepository {
 
     }
 
-
+    @Override
+    public List<Bill> saveAll(List<Bill> bill) {
+        for (Bill bills : bill){
+            entityManager.persist(bills);
+        }
+        return null;
+    }
 }

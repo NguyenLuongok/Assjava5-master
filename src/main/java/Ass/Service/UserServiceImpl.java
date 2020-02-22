@@ -36,7 +36,6 @@ public class UserServiceImpl implements UserService {
         Users user = userRepository.findByUsername(username);
         if (user != null && user.getMatKhau().equals(password)) {
             return true;
-            // nó sẽ gọi cái kia trước khi thực hiện truy vấn tới so sánh vs dữ liệu nhập vào
         }
         return false;
     }

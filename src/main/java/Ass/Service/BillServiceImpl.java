@@ -10,7 +10,6 @@ public class BillServiceImpl implements BillService {
     @Autowired
     private BillRepository billRepository;
 
-
     @Override
     public List<Bill> findAll() {
         return billRepository.findAll();
@@ -23,13 +22,17 @@ public class BillServiceImpl implements BillService {
 
     @Override
     public void save(Bill bill) {
-
+        billRepository.save(bill);
     }
 
     @Override
     public void remove(Long id) {
-
+        billRepository.remove(id);
     }
 
+    @Override
+    public List<Bill> saveAll(List<Bill> bill) {
+        return billRepository.saveAll(bill);
+    }
 
 }

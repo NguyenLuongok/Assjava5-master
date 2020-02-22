@@ -10,11 +10,11 @@ public class Products {
   private Long id;
   private String maSP;
   private String tenSP;
-  private String giaSP;
+  private double giaSP;
   private String hinhAnh;
   private String ghiChu;
   public Products(){}
-  public Products(String maSP, String tenSP, String giaSP, String hinhAnh, String ghiChu){
+  public Products(String maSP, String tenSP, double giaSP,String hinhAnh, String ghiChu){
       this.maSP=maSP;
       this.tenSP=tenSP;
       this.giaSP=giaSP;
@@ -51,11 +51,11 @@ public class Products {
         this.tenSP = tenSP;
     }
 
-    public String getGiaSP() {
+    public double getGiaSP() {
         return giaSP;
     }
 
-    public void setGiaSP(String giaSP) {
+    public void setGiaSP(double giaSP) {
         this.giaSP = giaSP;
     }
 
@@ -74,4 +74,5 @@ public class Products {
     public void setGhiChu(String ghiChu) {
         this.ghiChu = ghiChu;
     }
+
 }

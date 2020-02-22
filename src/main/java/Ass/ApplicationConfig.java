@@ -1,6 +1,7 @@
 package Ass;
 
 
+import Ass.Model.Bill;
 import Ass.Repository.*;
 import Ass.Service.*;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,6 +19,7 @@ import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
 import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
 import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
+import org.springframework.web.multipart.commons.CommonsMultipartResolver;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
@@ -70,8 +72,6 @@ public class ApplicationConfig implements WebMvcConfigurer {
     public BillService billService(){
         return new BillServiceImpl();
     }
-
-
 
     //Cấu hình thymeleaf
     @Bean
@@ -144,10 +144,20 @@ public class ApplicationConfig implements WebMvcConfigurer {
         emBean.setJpaProperties(additionalProperties());
         return emBean;
     }
+
+    // config resources
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
         registry
                 .addResourceHandler("/resources/**")
                 .addResourceLocations("/resources/");
     }
+
+    // config upload file
+    @Bean(name = "multipartResolver")
+    public CommonsMultipartResolver getCommonsMultipartResolver() {
+        CommonsMultipartResolver multipartResolver = new CommonsMultipartResolver();
+        return multipartResolver;
+    }
+
 }

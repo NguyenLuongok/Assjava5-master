@@ -14,12 +14,12 @@ public class Bill {
     private String soLuong;
     private String tongTien;
     private String diaChi;
-    private int soDT;
+    private String soDT;
 
     public Bill() {
     }
 
-    public Bill(String tenSP, String giaSP, String soLuong, String tongTien, String diaChi, int soDT) {
+    public Bill(String tenSP, String giaSP, String soLuong, String tongTien, String diaChi, String soDT) {
         this.tenSP = tenSP;
         this.giaSP = giaSP;
         this.soLuong = soLuong;
@@ -27,6 +27,17 @@ public class Bill {
         this.diaChi = diaChi;
         this.soDT = soDT;
     }
+
+    public Bill(String tenKH, String diaChi, String soDT ,String tenSP, String giaSP, String soLuong,String tongTien) {
+        this.tenKH = tenKH;
+        this.diaChi = diaChi;
+        this.soDT = soDT;
+        this.tenSP = tenSP;
+        this.giaSP = giaSP;
+        this.soLuong = soLuong;
+        this.tongTien= tongTien;
+    }
+
     @Override
     public String toString(){
         return "Bill{"+"id="+id+",tenKH='"+tenKH+'\''+",tenSP='"+tenSP+'\'' +",giaSP='"+giaSP+'\''+
@@ -90,11 +101,11 @@ public class Bill {
         this.diaChi = diaChi;
     }
 
-    public int getSoDT() {
+    public String getSoDT() {
         return soDT;
     }
 
-    public void setSoDT(int soDT) {
+    public void setSoDT(String soDT) {
         this.soDT = soDT;
     }
 }

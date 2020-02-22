@@ -9,4 +9,5 @@ public interface BillService {
     Bill finById(Long id);
     void save(Bill bill);
     void remove(Long id);
+    List<Bill> saveAll(List<Bill> bill);
 }

@@ -1,7 +1,7 @@
 package Ass.Repository;
 
-import Ass.Model.Bill;
 import Ass.Model.Products;
+import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -10,6 +10,7 @@ import javax.transaction.Transactional;
 import java.util.List;
 
 @Transactional
+@Repository
 public class ProductsRepositoryImpl implements ProductsRepository {
     @PersistenceContext
     private EntityManager entityManager;
@@ -46,8 +47,20 @@ public class ProductsRepositoryImpl implements ProductsRepository {
 
     @Override
     public void update(Long id, Products model) {
-
+        entityManager.merge(model);
     }
 
 
+    @Override
+    public Products findByName(String name) {
+        String query = "SELECT p FROM Products p where p.tenSP =: name";
+        TypedQuery<Products> productsTypedQuery = entityManager.createQuery(query,Products.class);
+        productsTypedQuery.setParameter("name", name);
+        return productsTypedQuery.getSingleResult();
+    }
+
+    @Override
+    public void refresh(Products model) {
+        entityManager.refresh(model);
+    }
 }
