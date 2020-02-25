@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:tiles="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h3>Cart Page</h3>
+
+<table cellpadding="2" cellspacing="2" border="1">
+    <tr>
+        <th>Id</th>
+        <th>Name</th>
+        <th>Photo</th>
+        <th>Price</th>
+        <th>Quantity</th>
+        <th>Sub Total</th>
+        <th>Remove</th>
+        <th>Order</th>
+    </tr>
+    <th:block th:each="item : ${session.cart}">
+       <tr>
+           <td th:text="${item.product.id}"/>
+           <td th:text="${item.product.tenSP}"/>
+           <td th:text="${item.product.giaSP}"/>
+           <td th:text="${item.product.hinhAnh}"/>
+           <td><input type="number" min="1" max="100" style="width: 50px;" th:value="${item.quantity}"></td>
+           <td th:text="${item.product.giaSP * item.quantity}"/>
+           <td><a th:href="@{/pages/remove/} + ${item.product.tenSP}">Remove</a></td>
+           <td><a th:href="@{/pages/orderPage/} + ${item.product.tenSP}">Tiến hành đặt hành</a></td>
+       </tr>
+    </th:block>
+    <tr>
+        <td th:text="${total}"/>
+    </tr>
+</table>
+<p></p>
+<a th:href="@{/pages/orderPageAll}">Order All</a>
+<br><br/>
+<a th:href="@{/pages/index-product}">Continue shopping</a>
+<p></p>
+</body>
+</html>

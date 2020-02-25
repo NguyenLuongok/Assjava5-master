@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:tiles="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h3>Products Page</h3>
+        <table cellpadding="2" cellspacing="2" border="1">
+            <tr>
+                <th>Name</th>
+                <th>Price</th>
+                <th>Photo</th>
+                <th>Buy</th>
+            </tr>
+                <th:block th:each="product : ${page}">
+                <tr>
+                    <td th:text="${product.tenSP}"/>
+                    <td th:text="${product.giaSP}"/>
+                    <td><img width="50px"  height="50px" th:src="@{/resources/images/}+${product.hinhAnh}" alt=""></td>
+                    <td th:text="${product.ghiChu}"/>
+                    <td><a th:href="@{/pages/buy/} + ${product.tenSP}">Buy Now</a></td>
+                </tr>
+            </th:block>
+        </table>
+        <p></p>
+        <div>
+            <span th:if="${page.hasPrevious()}">
+                <a th:href="@{/pages/index-product(page=${page.number-1},size=${page.size})}">Previous</a>
+            </span>
+            <th:block th:each="i: ${#numbers.sequence(0, page.totalPages - 1)}">
+                <span th:if="${page.number == i}" class="selected">[[${i}+1]]</span>
+                <span th:unless="${page.number == i}">
+                    <a th:href="@{/pages/index-product(page=${i},size=${page.size})}">[[${i}+1]]</a>
+                </span>
+            </th:block>
+                <span th:if="${page.hasNext()}">
+                    <a th:href="@{/pages/index-product(page=${page.number+1},size=${page.size})}">Next</a>
+                </span>
+        </div>
+</body>
+</html>

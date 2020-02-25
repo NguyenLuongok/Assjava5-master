@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:tiles="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h3>Products Page</h3>
+<a th:href="@{/pages/create-products}">Add Products</a>
+<table cellpadding="2" cellspacing="2" border="1">
+    <tr>
+        <th>Name</th>
+        <th>Price</th>
+        <th>Photo</th>
+        <th>Ghi chu</th>
+        <th>Sua</th>
+        <th>Xoa</th>
+    </tr>
+    <th:block th:each="product : ${page}">
+        <tr>
+            <td th:text="${product.tenSP}"/>
+            <td th:text="${product.giaSP}"/>
+            <td><img width="100px"  height="100px" th:src="@{/resources/images/}+${product.hinhAnh}" alt=""/></td>
+            <td th:text="${product.ghiChu}"/>
+            <td><a th:href="@{/pages/update-products/} + ${product.id}">Update</a></td>
+            <td><a th:href="@{/pages/remove-products/} + ${product.id}">Delete</a></td>
+        </tr>
+    </th:block>
+</table>
+<p></p>
+<div>
+    <span th:if="${page.hasPrevious()}">
+        <a th:href="@{/pages/view-create-products(page=${page.number-1},size=${page.size})}">Previous</a>
+    </span>
+    <th:block th:each="i: ${#numbers.sequence(0, page.totalPages - 1)}">
+        <span th:if="${page.number == i}" class="selected">[[${i}+1]]</span>
+        <span th:unless="${page.number == i}">
+            <a th:href="@{/pages/view-create-products(page=${i},size=${page.size})}">[[${i}+1]]</a>
+        </span>
+    </th:block>
+    <span th:if="${page.hasNext()}">
+        <a th:href="@{/pages/view-create-products(page=${page.number+1},size=${page.size})}">Next</a>
+    </span>
+</div>
+</body>
+</html>
